@@ -17,13 +17,16 @@ const handleFiles = async (
         const { loaded, total } = e;
         updateProgressInState([loaded, total]);
       };
-      reader.readAsText(file);
+
       // once the file has been read then parse the result
-      reader.onload = e => {
-        const fileInfo = file;
-        const fileData = JSON.parse(reader.result);
-        saveFileDataInState([fileInfo, fileData]);
+      reader.onload = async e => {
+        const fileInfo = await file;
+        const fileData = await JSON.parse(reader.result);
+        // function to save the file data in the parent component (lift the state)
+        await saveFileDataInState([fileInfo, fileData]);
       };
+
+      reader.readAsText(file);
     } catch (e) {
       console.log(e);
     }
@@ -38,15 +41,31 @@ const UploadLogFile = ({ addLogFile }) => {
   // to activate the file upload dialog
   const inputEl = useRef(null);
 
+  const uploadProgress = () => {
+    const [currentLoadedBytes, totalFileSize] = progress;
+    if (currentLoadedBytes === 0) {
+      return "";
+    } else if (currentLoadedBytes !== totalFileSize) {
+      return (
+        <p>{`File progress: ${(progress[0] / progress[1]) * 100 || 0} %`}</p>
+      );
+    } else if (currentLoadedBytes === totalFileSize) {
+      return (
+        <p style={{ opacity: 0.4, fontSize: "10px" }}>✔ upload successful</p>
+      );
+    }
+  };
+
   return (
-    <div className="log-section">
+    <div className="upload__section">
       <button
         className="add-log__button"
         onClick={() => inputEl.current.click()}
       >
         + Add File
       </button>
-      <p>{`percent:${progress[0]} - total:${progress[1]}`}</p>
+      {}
+
       <input
         ref={inputEl}
         type="file"
@@ -55,6 +74,7 @@ const UploadLogFile = ({ addLogFile }) => {
         hidden
         onChange={e => handleFiles(e, setProgress, addLogFile)}
       />
+      {uploadProgress()}
     </div>
   );
 };

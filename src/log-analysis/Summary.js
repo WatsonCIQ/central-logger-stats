@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { formatTime } from "../utils";
+import { formatTime, fileSizeConverter } from "../utils";
 
-const Summary = ({ fileData: logData }) => {
+const Summary = ({ logSummary }) => {
   return (
     <div>
       <p className="error__text">
@@ -9,40 +9,40 @@ const Summary = ({ fileData: logData }) => {
         <span role="img" className="log-icon" aria-label="error">
           ❌
         </span>
-        errors: {logData.errors}
+        errors: {logSummary.errors}
       </p>
       <p className="warning__text">
         {" "}
         <span role="img" className="log-icon" aria-label="warning">
           ⚠
         </span>
-        warnings: {logData.warnings}
+        warnings: {logSummary.warnings}
       </p>
       <p className="debug__text">
         {" "}
         <span role="img" className="log-icon" aria-label="debug">
           🐛
         </span>
-        debugs: {logData.debug}
+        debugs: {logSummary.debug}
       </p>
       <p className="log__text">
         {" "}
         <span role="img" className="log-icon" aria-label="log">
           🛠
         </span>
-        logs: {logData.log}
+        logs: {logSummary.log}
       </p>
       <p className="">
         {" "}
         <span role="img" className="log-icon" aria-label="log size">
           📈
         </span>
-        log size: {logData.logSize / 1000}KB
+        log size: {fileSizeConverter(logSummary.logSize)}
       </p>
       <p className="">
         {" "}
         ⌛time to load from startup:{" "}
-        {formatTime(logData.timeElapsedFromStartup)}
+        {formatTime(logSummary.timeElapsedFromStartup)}
       </p>
     </div>
   );

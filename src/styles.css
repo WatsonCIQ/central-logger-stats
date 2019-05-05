@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Orbitron");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Gugi");
 
 :root {
   --primary-blue: #0e4c73;
@@ -18,20 +19,13 @@ body {
   text-align: center;
   font-family: "Open Sans", sans-serif;
 }
-.App > h1 {
-  font-family: "Orbitron", sans-serif;
-  color: var(--bright-coral);
-  text-align: center;
-  text-shadow: 3px 6px #37422a;
-}
 .add-log__button {
-  background-color: #77cfd2;
-  color: black;
+  background-color: var(--secondary-blue);
+  color: white;
   border: solid;
-  border-radius: 8px;
+  border-radius: 3px;
   padding: 4px 14px;
-  z-index: 999;
-  box-shadow: 2px 3px 4px black;
+  box-shadow: 2px 2px 0px 0px #ffffff52;
   cursor: pointer;
 }
 .logs {
@@ -54,4 +48,50 @@ body {
 }
 .log-icon {
   padding: 0px 2px;
+}
+
+.log-panel {
+  margin-right: 14px;
+  border-right: 1px solid #265675;
+  padding: 0px 12px;
+}
+.header {
+  display: grid;
+  grid-template-columns: auto max-content;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo > h1 {
+  font-family: "Gugi", sans-serif;
+  text-align: center;
+  text-shadow: 3px 3px var(--secondary-blue);
+  line-height: 5px;
+}
+
+.logo > p {
+  font-family: "Orbitron";
+  font-variant: all-petite-caps;
+  line-height: 2px;
+  margin-top: 5px;
+}
+
+.logo img {
+  height: 38px;
+  position: absolute;
+  right: 193px;
+  z-index: -1;
+  top: 4px;
+}
+
+.upload__section {
+  margin-top: 40px;
+}
+
+.file-details__panel > p {
+  font-size: 10px;
+  opacity: 0.7;
 }
