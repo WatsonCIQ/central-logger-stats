@@ -1,7 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Orbitron");
 
+:root {
+  --primary-blue: #0e4c73;
+  --secondary-blue: #0597f2;
+  --monochrome-blue: #5095bf;
+  --complimentry-green: #09806d;
+  --complimentry-orange: #bf6f00;
+  --bright-coral: #f23545;
+}
+
 body {
-  background-color: #0f2f43;
+  background-color: var(--primary-blue);
   color: white;
 }
 .App {
@@ -11,19 +20,16 @@ body {
 }
 .App > h1 {
   font-family: "Orbitron", sans-serif;
-  color: #abd277;
+  color: var(--bright-coral);
   text-align: center;
   text-shadow: 3px 6px #37422a;
 }
 .add-log__button {
-  position: absolute;
-  bottom: 11px;
-  right: 12px;
-  background-color: #abd277;
+  background-color: #77cfd2;
   color: black;
   border: solid;
   border-radius: 8px;
-  padding: 0px 7px;
+  padding: 4px 14px;
   z-index: 999;
   box-shadow: 2px 3px 4px black;
   cursor: pointer;
